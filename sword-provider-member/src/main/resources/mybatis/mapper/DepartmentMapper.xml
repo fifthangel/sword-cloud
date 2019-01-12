@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sword.cloud.dao.DeptDao">
+
+    <select id="findById" resultType="Department" parameterType="Long">
+         SELECT
+          id,
+          dname,
+          createTime,
+          createUserName,
+          createUserId,
+          updateTime,
+          updateUserName,
+          updateUserId
+          FROM
+             department
+          where id=#{id};
+	</select>
+    <select id="findAll" resultType="Department">
+		  SELECT
+          id,
+          dname,
+          createTime,
+          createUserName,
+          createUserId,
+          updateTime,
+          updateUserName,
+          updateUserId
+          FROM  ;
+	</select>
+    <insert id="addDept" parameterType="Department">
+		INSERT INTO  department (dname) VALUES  (#{dname}) ;
+	</insert>
+
+</mapper>
+ 
+
