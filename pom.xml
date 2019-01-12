@@ -95,5 +95,6 @@
         <module>sword-api</module>
         <module>sword-eureka</module>
         <module>sword-provider-member</module>
+        <module>sword-comsumer-member</module>
     </modules>
 </project>
