@@ -6,7 +6,9 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="sword-admin-web" />
         <module name="sword-api" />
+        <module name="sword-cache" />
         <module name="sword-comsumer-member" />
         <module name="sword-eureka" />
         <module name="sword-provider-member" />
