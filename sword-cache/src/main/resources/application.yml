@@ -7,7 +7,7 @@
 
  spring: #redis
    redis:
-      host: 127.0.0.1
+      host: localhost
       pool:
          max-active: 10
          max-wait: -1
@@ -17,8 +17,8 @@
    cache:  # ehcache
       type: jcache
       jcache:
-         config: classpath:/config/ehcache.xml
-         provider: org.ehcache.jsr107.EhcacheCachingProvider
+         config: cache/ehcache.xml
+
 
 
 

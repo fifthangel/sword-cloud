@@ -37,6 +37,11 @@ public class DepartmentServiceFallbackFactory implements FallbackFactory<Departm
             public List<Department> list() {
                 return null;
             }
+
+            @Override
+            public Integer del(Department dept) {
+                return null;
+            }
         };
     }
 }

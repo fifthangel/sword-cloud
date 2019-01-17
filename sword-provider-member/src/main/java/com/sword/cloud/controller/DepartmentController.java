@@ -1,12 +1,12 @@
 package com.sword.cloud.controller;
 
-import com.sword.cloud.fallback.DepartmentServiceFallbackFactory;
 import com.sword.cloud.entities.Department;
+import com.sword.cloud.fallback.DepartmentServiceFallbackFactory;
 import com.sword.cloud.service.DepartmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
-import org.springframework.cloud.netflix.feign.FeignClient;
+import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

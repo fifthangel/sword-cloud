@@ -11,4 +11,6 @@ public interface DepartmentService
 	public Department get(Long id);
 
 	public List<Department> list();
+
+	public  Integer del(Department dept);
 }

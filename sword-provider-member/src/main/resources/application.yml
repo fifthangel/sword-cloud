@@ -3,11 +3,27 @@ server:
   
 mybatis:
   config-location: classpath:mybatis/mybatis.cfg.xml        # mybatis配置文件所在路径
-  type-aliases-package: com.sword.cloud.entities    # 所有Entity别名类所在包
-  mapper-locations:
-  - classpath:mybatis/mapper/**/*.xml                       # mapper映射文件
-    
+  type-aliases-package: com.sword.cloud.entities           # 所有Entity别名类所在包
+  mapper-locations: classpath:mybatis/mapper/**/*.xml       # mapper映射文件
+
+
+
+
 spring:
+   redis:
+      host: 39.107.67.6
+      pool:
+         max-active: 10
+         max-wait: -1
+         max-idle: 5
+         timeout: 50
+      port: 6379
+   cache:  # ehcache
+      type: ehcache
+      ehcache:
+         config: cache/ehcache.xml
+
+
    application:
     name: sword-provider-member
    datasource:
@@ -21,10 +37,10 @@ spring:
       initial-size: 5                                       # 初始化连接数
       max-total: 5                                          # 最大连接数
       max-wait-millis: 200                                  # 等待连接获取的最大超时时间
-      
+
 eureka:
   client: #客户端注册进eureka服务列表内
-    service-url: 
+    service-url:
       defaultZone: http://localhost:7001/eureka
        #defaultZone: http://eureka7001.com:7001/eureka/,http://eureka7002.com:7002/eureka/,http://eureka7003.com:7003/eureka/
   instance:
@@ -36,4 +52,7 @@ info:
   company.name:  com.sword.cloud
   build.artifactId: ${project.artifactId}
   build.version: ${project.version}
+
+
+
 

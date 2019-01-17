@@ -12,11 +12,9 @@ public interface DepartmentDao
 
 	public boolean addDept(Department dept);
 
-	//ehcache缓存--cacheName不用"redis"开头 (ehcache.xml需要配置)
-	@Cacheable(cacheNames="sword-department", key="'department' + #dept.id", unless="#result==null")
 	public Department findById(Long id);
 
-	//redis缓存
-	@Cacheable(cacheNames="redis-sword-department", key="'department' + #dept.id", unless="#result==null")
 	public List<Department> findAll();
+
+	public Integer delDept(Department dept);
 }
