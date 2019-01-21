@@ -11,6 +11,7 @@
         <module name="sword-cache" />
         <module name="sword-comsumer-member" />
         <module name="sword-eureka" />
+        <module name="sword-nacos" />
         <module name="sword-provider-member" />
       </profile>
     </annotationProcessing>

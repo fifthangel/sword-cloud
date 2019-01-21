@@ -1,9 +1,12 @@
 package com.sword.cloud.entities;
 
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -20,13 +23,18 @@ import java.util.Date;
 @AllArgsConstructor//有参构造
 @Data                //不用再写getter() setter() toString()
 @Accessors(chain = true) //链式操作 .set().set().set().....,可以一直打点调用
-public class Department implements Serializable {
+public class Department  implements Serializable {
+
 
     private Long id;//pk id
-    private String dname; // 部门名称
+    private String dname;//pk id
+    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date createTime;//创建时间
     private String createUserName;//创建人姓名
     private Long createUserId;
+    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date updateTime;
     private String updateUserName;
     private Long updateUserId;

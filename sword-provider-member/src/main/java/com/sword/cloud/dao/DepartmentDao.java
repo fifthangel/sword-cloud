@@ -7,14 +7,7 @@ import org.springframework.cache.annotation.Cacheable;
 import java.util.List;
 
 @Mapper
-public interface DepartmentDao
+public interface DepartmentDao extends  BaseDao<Department>
 {
 
-	public boolean addDept(Department dept);
-
-	public Department findById(Long id);
-
-	public List<Department> findAll();
-
-	public Integer delDept(Department dept);
 }
