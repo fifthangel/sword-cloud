@@ -25,11 +25,3 @@ public class ConfigBean //boot -->spring   applicationContext.xml --- @Configura
 		return new RetryRule();
 	}
 }
-
-//@Bean
-//public UserServcie getUserServcie()
-//{
-//	return new UserServcieImpl();
-//}
-// applicationContext.xml == ConfigBean(@Configuration)
-//<bean id="userServcie" class="com.atguigu.tmall.UserServiceImpl">

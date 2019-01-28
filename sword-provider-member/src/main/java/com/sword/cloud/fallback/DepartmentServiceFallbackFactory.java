@@ -1,6 +1,7 @@
 package com.sword.cloud.fallback;
 
 
+import com.github.pagehelper.PageInfo;
 import com.sword.cloud.entities.Department;
 import com.sword.cloud.service.DepartmentService;
 import feign.hystrix.FallbackFactory;
@@ -29,8 +30,7 @@ public class DepartmentServiceFallbackFactory implements FallbackFactory<Departm
 
             @Override
             public Department get(Long id){
-                return new Department().setId(id).setDname("该ID：" + id + "没有没有对应的信息,Consumer客户端提供的降级信息,此刻服务Provider已经关闭")
-                        .setDbSource("no this database in MySQL");
+                return new Department().setId(id).setDname("该ID：" + id + "没有没有对应的信息,Consumer客户端提供的降级信息,此刻服务Provider已经关闭");
             }
 
             @Override
@@ -41,6 +41,11 @@ public class DepartmentServiceFallbackFactory implements FallbackFactory<Departm
             @Override
             public Integer del(Department dept) {
                 return null;
+            }
+
+            @Override
+            public PageInfo<Department> findAll(int pageNum, int pageSize) {
+                return new PageInfo<Department>();
             }
         };
     }

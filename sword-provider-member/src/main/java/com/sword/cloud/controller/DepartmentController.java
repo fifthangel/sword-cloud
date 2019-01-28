@@ -1,5 +1,6 @@
 package com.sword.cloud.controller;
 
+import com.github.pagehelper.PageInfo;
 import com.sword.cloud.entities.Department;
 import com.sword.cloud.fallback.DepartmentServiceFallbackFactory;
 import com.sword.cloud.service.DepartmentService;
@@ -20,8 +21,10 @@ import java.util.List;
  */
 
 @RestController
-@FeignClient(value = "SWORD-PROVIDER-MEMBER", fallbackFactory = DepartmentServiceFallbackFactory.class)//hystrix 熔断注解
+//当前接口的hystrix 熔断注解，每个接口建立不同的 xxxxServiceFallbackFactory
+@FeignClient(value = "SWORD-PROVIDER-MEMBER", fallbackFactory = DepartmentServiceFallbackFactory.class)
 public class DepartmentController {
+
     @Autowired
     private DepartmentService service;
     @Autowired
@@ -47,15 +50,23 @@ public class DepartmentController {
         return service.list();
     }
 
+    @RequestMapping(value = "/dept/pageList", method = RequestMethod.GET)
+    public PageInfo<Department> pageList(@RequestParam(name = "pageNum", required = false, defaultValue = "1")
+                                                 int pageNum,
+                                         @RequestParam(name = "pageSize", required = false, defaultValue = "10")
+                                                 int pageSize) {
+        return service.findAll(pageNum, pageSize);
+    }
+
 
     //	@Autowired
-//	private DiscoveryClient client;
+    //	private DiscoveryClient client;
     @RequestMapping(value = "/dept/discovery", method = RequestMethod.GET)
     public Object discovery() {
         List<String> list = discoveryClient.getServices();
         System.out.println("**********" + list);
 
-        List<ServiceInstance> srvList = discoveryClient.getInstances("sword-provider-member");
+        List<ServiceInstance> srvList = discoveryClient.getInstances("SWORD-PROVIDER-MEMBER");
         for (ServiceInstance element : srvList) {
             System.out.println(element.getServiceId() + "\t" + element.getHost() + "\t" + element.getPort() + "\t"
                     + element.getUri());
@@ -63,9 +74,6 @@ public class DepartmentController {
         return this.discoveryClient;
     }
 
-    public Department processHystrix_Get(@PathVariable("id") Long id) {
-        return new Department().setId(id).setDname("该ID：" + id + "没有没有对应的信息,null--@HystrixCommand")
-                .setDbSource("no this database in MySQL");
-    }
+
 
 }

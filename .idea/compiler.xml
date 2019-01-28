@@ -10,9 +10,11 @@
         <module name="sword-api" />
         <module name="sword-cache" />
         <module name="sword-comsumer-member" />
+        <module name="sword-core" />
         <module name="sword-eureka" />
         <module name="sword-nacos" />
         <module name="sword-provider-member" />
+        <module name="sword-shiro" />
       </profile>
     </annotationProcessing>
   </component>

@@ -1,8 +1,8 @@
+#项目启动端口
 server:
   port: 8001
+
+# 项目启用环境
 spring:
   profiles:
-    active: dev
-
-
-
+    active: test

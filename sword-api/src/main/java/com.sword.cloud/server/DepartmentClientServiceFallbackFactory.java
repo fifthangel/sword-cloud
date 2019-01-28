@@ -21,7 +21,9 @@ public class DepartmentClientServiceFallbackFactory implements FallbackFactory<D
         return new DepartmentClientService() {
             @Override
             public Department get(long id) {
-                return new Department().setId(id).setDname("该ID：" + id + "没有没有对应的信息,Consumer客户端提供的降级信息,此刻服务Provider已经关闭").setDbSource("no this database in MySQL");
+                Department department = new Department().setId(id).setDname("该ID：" + id + "没有没有对应的信息,Consumer客户端提供的降级信息,此刻服务Provider已经关闭");
+                department.setDbSource("~");
+                return department;
             }
 
             @Override

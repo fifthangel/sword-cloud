@@ -1,5 +1,7 @@
 package com.sword.cloud.service.impl;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.sword.cloud.CacheExpire;
 import com.sword.cloud.constant.CacheConstant;
 import com.sword.cloud.dao.DepartmentDao;
@@ -15,6 +17,7 @@ import java.util.List;
 
 @Service
 public class DepartmentServiceImpl implements DepartmentService {
+
     @Autowired
     private DepartmentDao departmentDao;
 
@@ -46,7 +49,19 @@ public class DepartmentServiceImpl implements DepartmentService {
     //beforeInvocation 改变触发清除操作的时间， 该属性值为true时，Spring会在调用该方法之前清除缓存中的指定元素。
 //    @CacheEvict(value = CacheConstant.EHCACHE_A, key = "#dept.id", allEntries=true, beforeInvocation=true)
     public Integer del(Department dept) {
+
         return departmentDao.del(dept);
+    }
+
+    @Override
+    @Cacheable(value = CacheConstant.REDIS_A, key = "'dept-page-list'",unless = "#result == null")
+    @CacheExpire(expire = 60)
+    public PageInfo<Department> findAll(int pageNum, int pageSize) {
+        //将参数传给这个方法就可以实现物理分页了，非常简单。
+        PageHelper.startPage(pageNum, pageSize);
+        List<Department> list = departmentDao.findAll();
+        PageInfo<Department> result = new PageInfo<Department>(list);
+        return result;
     }
 
 }

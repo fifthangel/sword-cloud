@@ -33,10 +33,10 @@
         where id=#{id};
     </select>
 
-    <select id="findAll" resultType="Department">
+    <select id="findAll" resultType="com.sword.cloud.entities.Department">
         SELECT
         <include refid="Base_Column_List"/>
-        FROM department ;
+        FROM department
     </select>
 
     <insert id="add" parameterType="Department">

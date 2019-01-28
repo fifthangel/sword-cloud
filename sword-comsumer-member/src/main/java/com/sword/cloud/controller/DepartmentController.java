@@ -1,6 +1,8 @@
 package com.sword.cloud.controller;
 
 
+import com.sword.cloud.common.Result;
+import com.sword.cloud.common.ResultGenerator;
 import com.sword.cloud.entities.Department;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,9 +26,13 @@ public class DepartmentController
 	private RestTemplate restTemplate;
 
 	@RequestMapping(value = "/consumer/dept/add")
-	public boolean add(Department dept)
+	public Result add(Department dept)
 	{
-		return restTemplate.postForObject(REST_URL_PREFIX + "/dept/add", dept, Boolean.class);
+		Boolean aBoolean = restTemplate.postForObject(REST_URL_PREFIX + "/dept/add", dept, Boolean.class);
+		if (aBoolean) {
+			return ResultGenerator.genSuccessResult();
+		}
+		return ResultGenerator.genFailResult("error");
 	}
 
 	@RequestMapping(value = "/consumer/dept/get/{id}")

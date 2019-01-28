@@ -6,8 +6,10 @@
     <file url="file://$PROJECT_DIR$/sword-api" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/sword-cache" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/sword-comsumer-member" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/sword-core" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/sword-eureka" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/sword-nacos" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/sword-provider-member" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/sword-shiro" charset="UTF-8" />
   </component>
 </project>
