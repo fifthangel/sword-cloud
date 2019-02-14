@@ -1,5 +1,5 @@
 ﻿<!doctype html>
-<html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
     <meta name="renderer" content="webkit|ie-comp|ie-stand">
@@ -22,7 +22,7 @@
     <script type="text/javascript" src="lib/DD_belatedPNG_0.0.8a-min.js"></script>
     <script>DD_belatedPNG.fix('*');</script>
     <![endif]-->
-    <title>H-ui.admin v3.1</title>
+    <title>SWORD-CLOUD</title>
     <meta name="keywords" content="H-ui.admin v3.1,H-ui网站后台模版,后台模版下载,后台管理系统模版,HTML后台模版下载">
     <meta name="description" content="H-ui.admin v3.1，是一款由国人开发的轻量级扁平化网站后台模板，完全免费开源的网站后台管理系统模版，适合中小型CMS后台系统。">
     <link rel="stylesheet" href="lib/layer/2.4/skin/layer.css" id="layui_layer_skinlayercss" style="">
@@ -30,9 +30,9 @@
 <body>
 <header class="navbar-wrapper">
     <div class="navbar navbar-fixed-top">
-        <div class="container-fluid cl"><a class="logo navbar-logo f-l mr-10 hidden-xs" href="/aboutHui.shtml">H-ui.admin</a>
+        <div class="container-fluid cl"><a class="logo navbar-logo f-l mr-10 hidden-xs" href="/aboutHui.shtml">SWORD-CLOUD</a>
             <a class="logo navbar-logo-m f-l mr-10 visible-xs" href="/aboutHui.shtml">H-ui</a>
-            <span class="logo navbar-slogan f-l mr-10 hidden-xs">v3.1</span>
+            <span class="logo navbar-slogan f-l mr-10 hidden-xs">v1.0</span>
             <a aria-hidden="false" class="nav-toggle Hui-iconfont visible-xs" href="javascript:;"></a>
             <nav class="nav navbar-nav">
                 <ul class="cl">
@@ -145,98 +145,17 @@
 </header>
 <aside class="Hui-aside">
     <div class="menu_dropdown bk_2">
-        <dl id="menu-article">
-            <dt><i class="Hui-iconfont Hui-iconfont-lunzi"></i> 资讯管理1<i class="Hui-iconfont menu_dropdown-arrow"></i>
-            </dt>
+        <dl id="menu-system" th:each="menu :${menus}">
+            <dt th:if="${menu.parentId}==0"><i class="Hui-iconfont"></i> <span th:text="${menu.name}"></span><i class="Hui-iconfont menu_dropdown-arrow"></i></dt>
             <dd>
                 <ul>
-                    <li><a data-href="article-list.html" data-title="资讯管理" href="javascript:void(0)">资讯管理</a></li>
-                </ul>
-            </dd>
-        </dl>
-        <dl id="menu-picture">
-            <dt><i class="Hui-iconfont"></i> 图片管理<i class="Hui-iconfont menu_dropdown-arrow"></i></dt>
-            <dd>
-                <ul>
-                    <li><a data-href="picture-list.html" data-title="图片管理" href="javascript:void(0)">图片管理</a></li>
-                </ul>
-            </dd>
-        </dl>
-        <dl id="menu-product">
-            <dt><i class="Hui-iconfont"></i> 产品管理<i class="Hui-iconfont menu_dropdown-arrow"></i></dt>
-            <dd>
-                <ul>
-                    <li><a data-href="product-brand.html" data-title="品牌管理" href="javascript:void(0)">品牌管理</a></li>
-                    <li><a data-href="product-category.html" data-title="分类管理" href="javascript:void(0)">分类管理</a></li>
-                    <li><a data-href="product-list.html" data-title="产品管理" href="javascript:void(0)">产品管理</a></li>
-                </ul>
-            </dd>
-        </dl>
-        <dl id="menu-comments">
-            <dt><i class="Hui-iconfont"></i> 评论管理<i class="Hui-iconfont menu_dropdown-arrow"></i></dt>
-            <dd>
-                <ul>
-                    <li><a data-href="http://h-ui.duoshuo.com/admin/" data-title="评论列表" href="javascript:;">评论列表</a>
-                    </li>
-                    <li><a data-href="feedback-list.html" data-title="意见反馈" href="javascript:void(0)">意见反馈</a></li>
-                </ul>
-            </dd>
-        </dl>
-        <dl id="menu-member">
-            <dt><i class="Hui-iconfont"></i> 会员管理<i class="Hui-iconfont menu_dropdown-arrow"></i></dt>
-            <dd>
-                <ul>
-                    <li><a data-href="member-list.html" data-title="会员列表" href="javascript:;">会员列表</a></li>
-                    <li><a data-href="member-del.html" data-title="删除的会员" href="javascript:;">删除的会员</a></li>
-                    <li><a data-href="member-level.html" data-title="等级管理" href="javascript:;">等级管理</a></li>
-                    <li><a data-href="member-scoreoperation.html" data-title="积分管理" href="javascript:;">积分管理</a></li>
-                    <li><a data-href="member-record-browse.html" data-title="浏览记录" href="javascript:void(0)">浏览记录</a>
-                    </li>
-                    <li><a data-href="member-record-download.html" data-title="下载记录" href="javascript:void(0)">下载记录</a>
-                    </li>
-                    <li><a data-href="member-record-share.html" data-title="分享记录" href="javascript:void(0)">分享记录</a>
+                    <li th:each="childMenu :${menus}" th:if="${childMenu.parentId==menu.id}" >
+                        <a th:attr="data-href=${childMenu.url},data-title=${childMenu.name}" href="javascript:void(0)"
+                           th:text="${childMenu.name}"></a>
                     </li>
                 </ul>
             </dd>
         </dl>
-        <dl id="menu-admin">
-            <dt><i class="Hui-iconfont"></i> 管理员管理<i class="Hui-iconfont menu_dropdown-arrow"></i></dt>
-            <dd>
-                <ul>
-                    <li><a data-href="admin-role.html" data-title="角色管理" href="javascript:void(0)">角色管理</a></li>
-                    <li><a data-href="admin-permission.html" data-title="权限管理" href="javascript:void(0)">权限管理</a></li>
-                    <li><a data-href="admin-list.html" data-title="管理员列表" href="javascript:void(0)">管理员列表</a></li>
-                </ul>
-            </dd>
-        </dl>
-        <dl id="menu-tongji">
-            <dt><i class="Hui-iconfont"></i> 系统统计<i class="Hui-iconfont menu_dropdown-arrow"></i></dt>
-            <dd>
-                <ul>
-                    <li><a data-href="charts-1.html" data-title="折线图" href="javascript:void(0)">折线图</a></li>
-                    <li><a data-href="charts-2.html" data-title="时间轴折线图" href="javascript:void(0)">时间轴折线图</a></li>
-                    <li><a data-href="charts-3.html" data-title="区域图" href="javascript:void(0)">区域图</a></li>
-                    <li><a data-href="charts-4.html" data-title="柱状图" href="javascript:void(0)">柱状图</a></li>
-                    <li><a data-href="charts-5.html" data-title="饼状图" href="javascript:void(0)">饼状图</a></li>
-                    <li><a data-href="charts-6.html" data-title="3D柱状图" href="javascript:void(0)">3D柱状图</a></li>
-                    <li><a data-href="charts-7.html" data-title="3D饼状图" href="javascript:void(0)">3D饼状图</a></li>
-                </ul>
-            </dd>
-        </dl>
-        <dl id="menu-system">
-            <dt><i class="Hui-iconfont"></i> 系统管理<i class="Hui-iconfont menu_dropdown-arrow"></i></dt>
-            <dd>
-                <ul>
-                    <li><a data-href="system-base.html" data-title="系统设置" href="javascript:void(0)">系统设置</a></li>
-                    <li><a data-href="system-category.html" data-title="栏目管理" href="javascript:void(0)">栏目管理</a></li>
-                    <li><a data-href="system-data.html" data-title="数据字典" href="javascript:void(0)">数据字典</a></li>
-                    <li><a data-href="system-shielding.html" data-title="屏蔽词" href="javascript:void(0)">屏蔽词</a></li>
-                    <li><a data-href="system-log.html" data-title="系统日志" href="javascript:void(0)">系统日志</a></li>
-                </ul>
-            </dd>
-        </dl>
-
-
     </div>
 </aside>
 <div class="dislpayArrow hidden-xs"><a class="pngfix" href="javascript:void(0);" onclick="displaynavbar(this)"></a>
@@ -296,7 +215,7 @@
                 },
             }
         });*/
-        loadMenuTree();
+        // loadMenuTree();
     });
 
     /*个人信息*/
@@ -347,10 +266,22 @@
         layer_show(title, url, w, h);
     }
 
+    var menuItemLi = '<li><a data-href="childMenuHref" data-title="childMenuTitle" href="javascript:void(0)">childMenuName</a></li>';
+    var menuItem = '<dl id="menu-customer">' +
+        '<dt><i class="Hui-iconfont"></i>menuName<i class="Hui-iconfont menu_dropdown-arrow"></i></dt>' +
+        '<dd><ul>' + menuItemLi + menuItemLi + menuItemLi + menuItemLi + menuItemLi + '</ul></dd></dl>';
+
 
     function loadMenuTree() {
         $.post("/menu/list", function (data) {
-            console.log(data);
+            var menuText = "";
+            var childMenuText = "";
+            $.each(data, function (index, val) {
+                if (val.parentId <= 0) {
+                    menuItem.replace('menuName', val.name);
+                }
+                $(".menu_dropdown").append(menuItem);
+            });
         });
     }
 

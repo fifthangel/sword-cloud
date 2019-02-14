@@ -1,6 +1,6 @@
 package com.sword.cloud.server;
 
-import com.sword.cloud.entities.Department;
+import com.sword.cloud.pojo.entity.Department;
 import feign.hystrix.FallbackFactory;
 import org.springframework.stereotype.Component;
 
@@ -22,7 +22,7 @@ public class DepartmentClientServiceFallbackFactory implements FallbackFactory<D
             @Override
             public Department get(long id) {
                 Department department = new Department().setId(id).setDname("该ID：" + id + "没有没有对应的信息,Consumer客户端提供的降级信息,此刻服务Provider已经关闭");
-                department.setDbSource("~");
+
                 return department;
             }
 

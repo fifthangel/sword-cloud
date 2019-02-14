@@ -1,7 +1,7 @@
 package com.sword.cloud.controller;
 
 import com.github.pagehelper.PageInfo;
-import com.sword.cloud.entities.Department;
+import com.sword.cloud.pojo.entity.Department;
 import com.sword.cloud.fallback.DepartmentServiceFallbackFactory;
 import com.sword.cloud.service.DepartmentService;
 import org.springframework.beans.factory.annotation.Autowired;

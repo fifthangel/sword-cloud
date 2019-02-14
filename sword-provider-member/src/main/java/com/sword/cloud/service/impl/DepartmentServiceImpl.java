@@ -4,11 +4,10 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.sword.cloud.CacheExpire;
 import com.sword.cloud.constant.CacheConstant;
-import com.sword.cloud.dao.DepartmentDao;
-import com.sword.cloud.entities.Department;
+import com.sword.cloud.dao.DepartmentMapper;
+import com.sword.cloud.pojo.entity.Department;
 import com.sword.cloud.service.DepartmentService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
@@ -19,13 +18,13 @@ import java.util.List;
 public class DepartmentServiceImpl implements DepartmentService {
 
     @Autowired
-    private DepartmentDao departmentDao;
+    private DepartmentMapper departmentMapper;
 
     @Override
     //CachePut在执行前不会去检查缓存中是否存在之前执行过的结果，而是每次都会执行该方法，并将执行结果以键值对的形式存入指定的缓存中。
     @CachePut(value = CacheConstant.EHCACHE_A, key = "#dept.id")//
     public boolean add(Department dept) {
-        return departmentDao.add(dept)>0;
+        return departmentMapper.insertSelective(dept)>0;
     }
 
     @Override
@@ -33,14 +32,14 @@ public class DepartmentServiceImpl implements DepartmentService {
     @Cacheable(value = CacheConstant.EHCACHE_A, key = "#id")//缓存
     @CacheExpire(expire = 60)//失效时间
     public Department get(Long id) {
-        return departmentDao.findById(id);
+        return departmentMapper.find(id);
     }
 
     @Override
     @Cacheable(value = CacheConstant.REDIS_A, key = "'dept-list'",unless = "#result == null or #result.empty")
     @CacheExpire(expire = 60)
     public List<Department> list() {
-        return departmentDao.findAll();
+        return departmentMapper.findList(new Department());
     }
 
     @Override
@@ -50,7 +49,7 @@ public class DepartmentServiceImpl implements DepartmentService {
 //    @CacheEvict(value = CacheConstant.EHCACHE_A, key = "#dept.id", allEntries=true, beforeInvocation=true)
     public Integer del(Department dept) {
 
-        return departmentDao.del(dept);
+        return departmentMapper.deleteByEntity(dept);
     }
 
     @Override
@@ -59,7 +58,7 @@ public class DepartmentServiceImpl implements DepartmentService {
     public PageInfo<Department> findAll(int pageNum, int pageSize) {
         //将参数传给这个方法就可以实现物理分页了，非常简单。
         PageHelper.startPage(pageNum, pageSize);
-        List<Department> list = departmentDao.findAll();
+        List<Department> list = departmentMapper.findList(new Department());
         PageInfo<Department> result = new PageInfo<Department>(list);
         return result;
     }

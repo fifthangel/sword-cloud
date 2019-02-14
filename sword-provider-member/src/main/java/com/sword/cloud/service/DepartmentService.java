@@ -1,7 +1,7 @@
 package com.sword.cloud.service;
 
 import com.github.pagehelper.PageInfo;
-import com.sword.cloud.entities.*;
+import com.sword.cloud.pojo.entity.Department;
 
 import java.util.List;
 

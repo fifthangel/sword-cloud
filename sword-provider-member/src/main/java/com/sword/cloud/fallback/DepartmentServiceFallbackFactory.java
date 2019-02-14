@@ -2,7 +2,7 @@ package com.sword.cloud.fallback;
 
 
 import com.github.pagehelper.PageInfo;
-import com.sword.cloud.entities.Department;
+import com.sword.cloud.pojo.entity.Department;
 import com.sword.cloud.service.DepartmentService;
 import feign.hystrix.FallbackFactory;
 import org.springframework.stereotype.Component;

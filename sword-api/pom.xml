@@ -13,9 +13,21 @@
 
 
     <dependencies><!-- 当前Module需要用到的jar包，按自己需求添加，如果父类已经包含了，可以不用写版本号 -->
+        <!-- 引入自己定义的core通用包 -->
+        <dependency>
+            <groupId>com.sword.cloud</groupId>
+            <artifactId>sword-core</artifactId>
+            <version>${project.version}</version>
+        </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
+        </dependency>
+        <!-- oval 参数校验 -->
+        <dependency>
+            <groupId>net.sf.oval</groupId>
+            <artifactId>oval</artifactId>
+
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>

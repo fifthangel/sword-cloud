@@ -3,7 +3,7 @@ package com.sword.cloud.controller;
 
 import com.sword.cloud.common.Result;
 import com.sword.cloud.common.ResultGenerator;
-import com.sword.cloud.entities.Department;
+import com.sword.cloud.pojo.entity.Department;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;

@@ -2,16 +2,19 @@ package com.sword.cloud.service;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.sword.cloud.CacheExpire;
 import com.sword.cloud.base.BaseServiceImpl;
+import com.sword.cloud.constant.CacheConstant;
 import com.sword.cloud.dao.MenuMapper;
 import com.sword.cloud.pojo.dto.MenuDto;
-import com.sword.cloud.pojo.dto.UserRoleDto;
 import com.sword.cloud.pojo.entity.Menu;
 import com.sword.cloud.pojo.view.MenuView;
 import com.sword.cloud.service.interfaces.MenuService;
 import com.sword.cloud.utils.PageDataResult;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -36,6 +39,8 @@ public class MenuServiceImpl extends BaseServiceImpl<Long, Menu, MenuDto, MenuVi
     }
 
     @Override
+    @Cacheable(value = CacheConstant.REDIS_Menu, key = "'menu-list'",unless = "#result == null")
+    @CacheExpire(expire = 60)
     public List<Menu> selectAll() {
         return menuMapper.findAll();
     }
