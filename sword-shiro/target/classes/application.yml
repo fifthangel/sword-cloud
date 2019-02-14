@@ -1,0 +1,8 @@
+#项目启动端口
+server:
+  port: 7070
+
+# 项目启用环境
+spring:
+  profiles:
+    active: dev

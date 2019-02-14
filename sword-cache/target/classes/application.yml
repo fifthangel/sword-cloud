@@ -1,0 +1,26 @@
+#spring:
+#    redis:
+#       cache.clusterNodes: 127.0.0.1:6379,127.0.0.1:6380,127.0.0.1:6381,127.0.0.1:6382,127.0.0.1:6383,127.0.0.1:6384
+#       cache.commandTimeout: 5000
+
+
+
+ spring: #redis
+   redis:
+      host: localhost
+      pool:
+         max-active: 10
+         max-wait: -1
+         max-idle: 5
+         timeout: 50
+         ssl: false
+   cache:  # ehcache
+      type: jcache
+      jcache:
+         config: cache/ehcache.xml
+
+
+
+
+
+
