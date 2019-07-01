@@ -3,6 +3,7 @@ package com.sword.cloud.web.menu;
 import com.sword.cloud.pojo.entity.Menu;
 
 import lombok.extern.slf4j.Slf4j;
+import org.apache.shiro.authz.annotation.RequiresUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,6 +31,7 @@ public class MenuController {
      * 分页查询用户列表
      * @return ok/fail
      */
+    @RequiresUser
     @RequestMapping(value = "/list", method = RequestMethod.POST)
     @ResponseBody
     public List<Menu> getList() {

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.sword.cloud.dao.RoleMapper" >
-  <resultMap id="BaseResultMap" type="com.sword.cloud.pojo.entity.Role" >
+  <resultMap id="BaseResultMap" type="Role" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="role_name" property="roleName" jdbcType="VARCHAR" />
     <result column="descpt" property="descpt" jdbcType="VARCHAR" />
@@ -26,7 +26,7 @@
     where id = #{id,jdbcType=INTEGER}
   </delete>
 
-  <insert id="insertSelective" parameterType="com.sword.cloud.pojo.entity.Role" >
+  <insert id="insertSelective" parameterType="Role" >
     insert into role
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -76,7 +76,7 @@
     </trim>
   </insert>
 
-  <update id="updateByPrimaryKeySelective" parameterType="com.sword.cloud.pojo.entity.Role" >
+  <update id="updateByPrimaryKeySelective" parameterType="Role" >
     update role
     <set >
       <if test="roleName != null" >
@@ -100,7 +100,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.sword.cloud.pojo.entity.Role" >
+  <update id="updateByPrimaryKey" parameterType="Role" >
     update role
     set role_name = #{roleName,jdbcType=VARCHAR},
       descpt = #{descpt,jdbcType=VARCHAR},
@@ -112,7 +112,7 @@
   </update>
 
 
-  <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="com.sword.cloud.pojo.entity.Role" >
+  <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="Role" >
     insert into role (id, role_name, descpt,
     code, insert_uid, insert_time,
     update_time)
@@ -129,14 +129,14 @@
   <!--=End findList 分页查询角色列表-->
 
   <!--=Start findRoleAndPerms 查询角色列表-->
-  <resultMap id="rolePerms" type="com.sword.cloud.pojo.entity.Role" >
+  <resultMap id="rolePerms" type="Role" >
     <id column="id" property="id" />
     <result column="role_name" property="roleName"/>
     <result column="code" property="code"/>
     <result column="descpt" property="descpt"/>
     <result column="insert_uid" property="insertUid"/>
     <result column="insert_time" property="insertTime"/>
-    <collection property="rolePerms" ofType="com.sword.cloud.pojo.entity.RolePermission">
+    <collection property="rolePerms" ofType="RolePermission">
       <result  column="role_id" property="roleId"/>
       <result column="permit_id" property="permitId"/>
     </collection>

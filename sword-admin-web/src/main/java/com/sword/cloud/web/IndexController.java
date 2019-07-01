@@ -2,11 +2,11 @@ package com.sword.cloud.web;
 
 import com.sword.cloud.pojo.entity.Menu;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.shiro.authz.annotation.RequiresUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
@@ -26,6 +26,7 @@ public class IndexController {
     @Autowired
     private RestTemplate restTemplate;
 
+    @RequiresUser
     @RequestMapping("/index")
     public String index(Model model) {
         log.debug("-------------index------------");

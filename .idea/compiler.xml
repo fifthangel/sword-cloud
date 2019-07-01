@@ -12,6 +12,7 @@
         <module name="sword-comsumer-member" />
         <module name="sword-core" />
         <module name="sword-eureka" />
+        <module name="sword-generator" />
         <module name="sword-nacos" />
         <module name="sword-provider-member" />
         <module name="sword-shiro" />

@@ -8,6 +8,8 @@
     <file url="file://$PROJECT_DIR$/sword-comsumer-member" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/sword-core" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/sword-eureka" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/sword-generator" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/sword-generator/src/main/resources/application.yml" charset="GBK" />
     <file url="file://$PROJECT_DIR$/sword-nacos" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/sword-provider-member" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/sword-shiro" charset="UTF-8" />

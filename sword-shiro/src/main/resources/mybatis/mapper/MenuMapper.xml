@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.sword.cloud.dao.MenuMapper">
 
-    <resultMap id="BaseResultMap" type="com.sword.cloud.pojo.entity.Menu">
+    <resultMap id="BaseResultMap" type="Menu">
         <id column="id" property="id" jdbcType="BIGINT"/>
         <result column="cid" property="cid" jdbcType="BIGINT"/>
         <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
@@ -32,7 +32,7 @@
         where id = #{id,jdbcType=BIGINT}
     </select>
 
-    <select id="findList" resultMap="BaseResultMap" parameterType="com.sword.cloud.pojo.entity.Menu">
+    <select id="findList" resultMap="BaseResultMap" parameterType="Menu">
         select
         <include refid="Base_Column_List"/>
         from menu
@@ -53,7 +53,7 @@
     where id = #{id,jdbcType=BIGINT}
   </delete>
 
-    <insert id="insertSelective" parameterType="com.sword.cloud.pojo.entity.Menu">
+    <insert id="insertSelective" parameterType="Menu">
         insert into menu
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id != null">
@@ -145,7 +145,7 @@
         </trim>
     </insert>
 
-    <update id="updateByPrimaryKeySelective" parameterType="com.sword.cloud.pojo.entity.Menu">
+    <update id="updateByPrimaryKeySelective" parameterType="Menu">
         update menu
         <set>
             <if test="cid != null">

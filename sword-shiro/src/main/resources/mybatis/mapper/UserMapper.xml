@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.sword.cloud.dao.UserMapper">
-	<resultMap id="BaseResultMap" type="com.sword.cloud.pojo.entity.User">
+	<resultMap id="BaseResultMap" type="User">
 		<id column="id" jdbcType="INTEGER" property="id" />
 		<result column="username" jdbcType="VARCHAR" property="username" />
 		<result column="mobile" jdbcType="VARCHAR" property="mobile" />
@@ -37,7 +37,7 @@
 		where id = #{id,jdbcType=INTEGER}
 	</delete>
 
-	<insert id="insertSelective" parameterType="com.sword.cloud.pojo.entity.User">
+	<insert id="insertSelective" parameterType="User">
 		insert into user
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 			<if test="id != null">
@@ -123,7 +123,7 @@
 		</trim>
 	</insert>
 
-	<update id="updateByPrimaryKey" parameterType="com.sword.cloud.pojo.entity.User">
+	<update id="updateByPrimaryKey" parameterType="User">
 		update user
 		set
 		username = #{username,jdbcType=VARCHAR},
@@ -149,7 +149,7 @@
 
 
 	<insert id="insert" useGeneratedKeys="true" keyProperty="id"
-		parameterType="com.sword.cloud.pojo.entity.User">
+		parameterType="User">
 		insert into user (id, username, mobile,
 		email, password,
 		insert_uid,
@@ -169,7 +169,7 @@
 		)
 	</insert>
 
-	<update id="updateByPrimaryKeySelective" parameterType="com.sword.cloud.pojo.entity.User">
+	<update id="updateByPrimaryKeySelective" parameterType="User">
 		update user
 		<set>
 			<if test="username != null">
@@ -211,7 +211,7 @@
 	</update>
 
 	<!--=Start getUsers 分页查询用户列表userSearch -->
-	<select id="getUsers" resultType="com.sword.cloud.pojo.dto.UserRoleDto">
+	<select id="getUsers" resultType="UserRoleDto">
 		select
 		id, username, mobile, email, insert_uid, insert_time,
 		update_time,
@@ -264,7 +264,7 @@
 	<!--=Start setDelUser 删除用户 -->
 
 	<!--=Start getUserAndRoles 查询用户及他对应的角色ids -->
-	<resultMap id="getUserRoles" type="com.sword.cloud.pojo.view.UserRolesView">
+	<resultMap id="getUserRoles" type="UserRolesView">
 		<id column="id" jdbcType="INTEGER" property="id" />
 		<result column="username" jdbcType="VARCHAR" property="username" />
 		<result column="mobile" jdbcType="VARCHAR" property="mobile" />
@@ -276,7 +276,7 @@
 		<result column="is_job" jdbcType="BIT" property="isJob" />
 		<result column="version" jdbcType="INTEGER" property="version" />
 
-		<collection property="userRoles" ofType="com.sword.cloud.pojo.entity.UserRole">
+		<collection property="userRoles" ofType="UserRole">
 			<result column="user_id" property="userId" />
 			<result column="role_id" property="roleId" />
 		</collection>
@@ -297,7 +297,7 @@
 	<!--=End getUserAndRoles 查询用户及他对应的角色ids -->
 
 	<!--=Start findUser 根据用户名和密码查找用户 -->
-	<select id="findUser" resultType="com.sword.cloud.pojo.entity.User">
+	<select id="findUser" resultType="User">
 		select
 		id, username, mobile,
 		email, insert_uid insertUid, insert_time
@@ -311,7 +311,7 @@
 	</select>
 	<!--=End findUser 根据用户名和密码查找用户 -->
 	<!--=Start findUserByMobile 根据手机号获取用户数据 -->
-	<select id="findUserByMobile" resultType="com.sword.cloud.pojo.entity.User">
+	<select id="findUserByMobile" resultType="User">
 		select
 		id, username,
 		mobile,password, email, insert_uid insertUid, insert_time
@@ -323,7 +323,7 @@
 	</select>
 	<!--=End findUserByMobile 根据手机号查找用户 -->
 	<!--=Start findUserByName 根据用户名获取用户数据 -->
-	<select id="findUserByName" resultType="com.sword.cloud.pojo.entity.User">
+	<select id="findUserByName" resultType="User">
 		select
 		id, username,
 		mobile, email, insert_uid insertUid, insert_time

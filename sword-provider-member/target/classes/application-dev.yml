@@ -34,7 +34,7 @@ spring:
     druid:
           filters: stat                                         #监控统计拦截的filters
           driver-class-name: com.mysql.jdbc.Driver            # mysql驱动包
-          url: jdbc:mysql://39.107.67.6:3306/security?useSSL=false&useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Hongkong              # 数据库名称
+          url: jdbc:mysql://39.107.67.6:3306/huanuo?useSSL=false&useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Hongkong              # 数据库名称
           username: root
           password: sjh860811
           #配置初始化大小/最小/最大
